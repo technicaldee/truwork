@@ -25,13 +25,10 @@ const HomePage = () => {
 
     await performActions(async (kit) => {
       const signer = await kit.web3.eth.getAccounts();
-      //@ts-ignore
       const contract = new kit.web3.eth.Contract(
-        //@ts-ignore
-        JobPostingABI,
+        JSON.parse(JobPostingABI.toString()),
         contractAddress
       );
-
       try {
         const tx = await contract.methods
           .createJob(description, ethers.parseUnits(budget, "wei"))
@@ -53,8 +50,7 @@ const HomePage = () => {
       await performActions(async (kit) => {
         const signer = kit.web3.eth.getAccounts();
         const contract = new kit.web3.eth.Contract(
-          //@ts-ignore
-          JobPostingABI,
+          JSON.parse(JobPostingABI.toString()),
           contractAddress
         );
 
