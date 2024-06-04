@@ -25,6 +25,7 @@ const HomePage = () => {
 
     await performActions(async (kit) => {
       const signer = await kit.web3.eth.getAccounts();
+      //@ts-ignore
       const contract = new kit.web3.eth.Contract(
         JobPostingABI,
         contractAddress
@@ -51,6 +52,7 @@ const HomePage = () => {
       await performActions(async (kit) => {
         const signer = kit.web3.eth.getAccounts();
         const contract = new kit.web3.eth.Contract(
+          //@ts-ignore
           JobPostingABI,
           contractAddress
         );
@@ -58,7 +60,7 @@ const HomePage = () => {
         try {
           const [jobIds, employers, descriptions, budgets, actives] =
             await contract.methods.getAllActiveJobs().call();
-          const jobList = jobIds.map((id, index) => ({
+          const jobList = jobIds.map((id: any, index: string | number) => ({
             id: id,
             employer: employers[index],
             description: descriptions[index],
