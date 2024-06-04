@@ -24,7 +24,7 @@ const HomePage = () => {
     e.preventDefault();
 
     await performActions(async (kit) => {
-      const signer = kit.web3.eth.getAccounts();
+      const signer = await kit.web3.eth.getAccounts();
       const contract = new kit.web3.eth.Contract(
         JobPostingABI,
         contractAddress
